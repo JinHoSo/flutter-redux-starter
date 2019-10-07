@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_redux_starter/data/api/auth/jwt.dart';
+import 'package:flutter_redux_starter/data/redux/app/app_state.dart';
+import 'package:flutter_redux_starter/data/redux/app/app_store.dart';
+import 'package:flutter_redux_starter/data/redux/jwt/jwt_state.dart';
+import 'package:flutter_redux_starter/screen/auth/sign_in_screen.dart';
+import 'package:redux/redux.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  Store<AppState> store = await createStore();
+  runApp(MyApp(store));
+}
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final Store<AppState> store;
+
+  MyApp(this.store);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+    return StoreProvider<AppState>(
+        store: store,
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          home: SignInScreen(),
+        ));
   }
 }
 
@@ -98,6 +101,27 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
+            StoreConnector<AppState, JwtState>(
+              distinct: true,
+              converter: (store) => store.state.jwtState,
+              builder: (context, jwtState) {
+                return new Text(
+                  '${jwtState.error}',
+                  style: Theme.of(context).textTheme.display1,
+                );
+              },
+            ),
+            StoreConnector<AppState, dynamic>(
+              converter: (store) => () => store.dispatch(signIn()),
+              builder: (context, loginUser) {
+                return FlatButton(
+                    color: Colors.lightBlue,
+                    onPressed: () {
+                      loginUser();
+                    },
+                    child: new Text("get token"));
+              },
+            )
           ],
         ),
       ),
