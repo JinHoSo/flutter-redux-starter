@@ -1,16 +1,30 @@
-# flutter_redux_starter
+# Flutter + Redux Starter
 
-A new Flutter project.
+A starter boilerplate with Flutter, Redux and Persistance.
 
-## Getting Started
+## Features
+- Support redux stores created with built_value 
+- Support Immutable reducers by built_value
+- Persist and rehydrate a redux store using built_value
+- Support whitelist being stored in part
 
-This project is a starting point for a Flutter application.
+## Get Started
+```
+$ git clone https://github.com/JinHoSo/flutter-redux-starter
 
-A few resources to get you started if this is your first Flutter project:
+$ cd flutter-redux-starter/
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+$ flutter run
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Included Packages
+- [flutter](https://github.com/flutter/flutter) 
+- [redux](https://pub.dev/packages/redux) 
+- [flutter_redux](https://pub.dev/packages/flutter_redux) 
+- [redux_logging](https://pub.dev/packages/redux_logging) 
+- [redux_thunk](https://pub.dev/packages/redux_thunk) 
+- [redux_persist](https://pub.dev/packages/redux_persist) 
+- [redux_persist_flutter](https://pub.dev/packages/flutter_redux) 
+- [build_runner](https://pub.dev/packages/build_runner)
+- [built_value_generator](https://pub.dev/packages/built_value_generator)
+- [built_value](https://pub.dev/packages/built_value) 

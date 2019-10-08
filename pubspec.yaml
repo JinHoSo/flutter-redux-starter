@@ -23,9 +23,7 @@ dependencies:
   redux_persist: ^0.8.2
   redux_persist_flutter: ^0.8.2
   flutter_redux: ^0.5.3
-  built_collection: ^4.2.2
   built_value: ^6.7.1
-  http: ^0.12.0+2
 
   flutter:
     sdk: flutter
